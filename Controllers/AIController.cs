@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace SentimentAI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Description("Give me a comment and I'll let you know if its positive or negative.")]
     public class AIController : ControllerBase
     {
         private readonly ILogger<AIController> _logger;
