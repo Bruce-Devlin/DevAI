@@ -53,7 +53,7 @@ namespace SentimentAI
 
         #endregion
 
-        private static string MLNetModelPath = Path.GetFullPath("D:\\GitRepos\\SentimentAI\\ML\\SentimentModel.zip");
+        private static string MLNetModelPath = Path.GetFullPath("SentimentModel.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 
