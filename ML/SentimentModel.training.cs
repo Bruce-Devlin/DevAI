@@ -37,7 +37,7 @@ namespace SentimentAI
             var pipeline = mlContext.Transforms.Text.FeaturizeText(inputColumnName:@"col0",outputColumnName:@"col0")      
                                     .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"col0"}))      
                                     .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))      
-                                    .Append(mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(new LbfgsLogisticRegressionBinaryTrainer.Options(){L1Regularization=1F,L2Regularization=1F,LabelColumnName=@"col1",FeatureColumnName=@"Features"}));
+                                    .Append(mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(new LbfgsLogisticRegressionBinaryTrainer.Options(){L1Regularization=0.03125F,L2Regularization=0.6722201F,LabelColumnName=@"col1",FeatureColumnName=@"Features"}));
 
             return pipeline;
         }
