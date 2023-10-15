@@ -62,11 +62,11 @@ namespace SentimentAI.Controllers
 
             if (prediction.PredictedLabel == "Dogs")
             {
-                result = $"\"I predict this is a Dog.\"";
+                result = $"I predict this is a Dog.";
             }
             else
             {
-                result = $"\"I predict this is a Cat.\"";
+                result = $"I predict this is a Cat.";
             }
             System.IO.File.Delete(tmpImageLoc);
 
