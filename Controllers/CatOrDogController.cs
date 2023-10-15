@@ -56,10 +56,9 @@ namespace SentimentAI.Controllers
                 ImageSource = imageBytes,
             };
             
-
             //Load model and predict output
             var prediction = CatOrDogModel.Predict(sampleData);
-            System.IO.File.Delete(tmpImageLoc);
+            Directory.Delete(imageDir, true);
 
             if (prediction.PredictedLabel == "Dogs")
             {
