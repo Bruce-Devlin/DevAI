@@ -12,11 +12,17 @@ namespace SentimentAI.Controllers.Helpers
 
         public PredictionResponse(string newPrediction, float newProbability = -1) 
         {
-            response = newPrediction;
-            probability = newProbability;
+            prediction.response = newPrediction;
+            prediction.probability = newProbability;
         }
 
+        public Prediction prediction { get; set; }
+    }
+
+    public class Prediction
+    {
         public string response { get; set; }
         public float probability { get; set; }
     }
+
 }
