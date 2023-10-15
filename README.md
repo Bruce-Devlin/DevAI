@@ -5,7 +5,7 @@ This AI is based on [.NET Machine Learning](https://dotnet.microsoft.com/en-us/a
 
 You can use the [demo site](http://s1.publiczeus.com:5165/) to play around with this or feel free to run it for yourself!
 
-##Setup
+## Setup
 This solution is build in Visual Studio 2022 and is built in .NET 6.
 
 To host you MUST change the launch profile json in the properties folder to your external IP. You will see the "htt://s1.publiczeus.com" domain in that file, simply change this to your IP/domain and then you can build/launch the program.
