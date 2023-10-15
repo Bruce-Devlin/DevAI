@@ -19,23 +19,15 @@ namespace SentimentAI
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseAuthorization();
             app.MapControllers();
-
-            app.UseHttpsRedirection();
-
-            var options = new DefaultFilesOptions();
-            options.DefaultFileNames.Clear();
-            options.DefaultFileNames.Add("index.html");
-            app.UseDefaultFiles(options);
-
-            app.UseStaticFiles();
-
-
-            app.UseRouting();
 
             app.Run();
         }
