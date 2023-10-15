@@ -29,11 +29,11 @@ namespace SentimentAI.Controllers
 
             if (prediction.PredictedLabel)
             {
-                result = $"I predict this is a positive comment with {prediction.Probability}% Probability";
+                result = $"\"I predict this is a positive comment with {prediction.Probability}% Probability.\"";
             }
             else
             {
-                result = $"I predict this is a negative comment with {prediction.Probability}% Probability";
+                result = $"\"I predict this is a negative comment with {prediction.Probability}% Probability.\"";
             }
 
 
