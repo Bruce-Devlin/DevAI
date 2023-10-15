@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using SentimentAI.Controllers.Helpers;
 using System.Net;
 
@@ -16,7 +17,7 @@ namespace SentimentAI.Controllers
         }
 
         [HttpPost(Name = "PostCatOrDog")]
-        public string Post(string imageURL)
+        public PredictionResponse Post(string imageURL)
         {
             string imageDir = Environment.CurrentDirectory + "/images/";
             if (!Directory.Exists(imageDir))
@@ -32,14 +33,14 @@ namespace SentimentAI.Controllers
             }
             catch (Exception ex) 
             {
-                return new PredictionResponse("Not a valid URL!").ToString();
+                return new PredictionResponse("Not a valid URL!");
             }
 
             
             string filename = Path.GetFileName(uri.LocalPath);
             if (!filename.EndsWith(".png") && !filename.EndsWith(".jpg") && !filename.EndsWith(".jpeg"))
             {
-                return new PredictionResponse("The file must be a .png, .jpg or .jpeg").ToString();
+                return new PredictionResponse("The file must be a .png, .jpg or .jpeg");
             }
 
             string tmpImageLoc = imageDir + $"\\{filename}";
@@ -62,11 +63,11 @@ namespace SentimentAI.Controllers
 
             if (prediction.PredictedLabel == "Dogs")
             {
-                return new PredictionResponse($"This is a Dog.").ToString();
+                return new PredictionResponse($"This is a Dog.");
             }
             else
             {
-                return new PredictionResponse($"This is a Cat.").ToString();
+                return new PredictionResponse($"This is a Cat.");
             }
         }
     }

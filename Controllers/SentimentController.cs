@@ -15,7 +15,7 @@ namespace SentimentAI.Controllers
         }
 
         [HttpPost(Name = "PostSentiment")]
-        public string Post(string comment)
+        public PredictionResponse Post(string comment)
         {
             //Load sample data
             var sampleData = new SentimentModel.ModelInput()
@@ -29,11 +29,11 @@ namespace SentimentAI.Controllers
 
             if (prediction.PredictedLabel)
             {
-                return new PredictionResponse($"This is a positive comment.", prediction.Probability).ToString();
+                return new PredictionResponse($"This is a positive comment.", prediction.Probability);
             }
             else
             {
-                return new PredictionResponse($"This is a negative comment.", prediction.Probability).ToString();
+                return new PredictionResponse($"This is a negative comment.", prediction.Probability);
             }
         }
     }
