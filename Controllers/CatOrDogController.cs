@@ -17,7 +17,7 @@ namespace SentimentAI.Controllers
         [HttpPost(Name = "PostCatOrDog")]
         public string Post(string imageURL)
         {
-            string imageDir = Environment.CurrentDirectory + "\\images\\";
+            string imageDir = Environment.CurrentDirectory + "/images/";
             if (!Directory.Exists(imageDir))
             {
                 Directory.CreateDirectory(imageDir);
