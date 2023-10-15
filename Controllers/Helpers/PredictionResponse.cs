@@ -16,7 +16,7 @@ namespace SentimentAI.Controllers.Helpers
             prediction.probability = newProbability;
         }
 
-        public class prediction 
+        public static class prediction 
         {
             public static string response { get; set; }
             public static float probability { get; set; }
