@@ -17,7 +17,7 @@ namespace SentimentAI.Controllers
         }
 
         [HttpPost(Name = "PostCatOrDog")]
-        public PredictionResponse Post(string imageURL)
+        public async Task<PredictionResponse> Post(string imageURL)
         {
             string imageDir = Environment.CurrentDirectory + "/images/";
             if (!Directory.Exists(imageDir))
@@ -49,6 +49,17 @@ namespace SentimentAI.Controllers
                 webClient.DownloadFile(imageURL, tmpImageLoc);
             }
 
+            bool downloading = true;
+            var client = new WebClient();
+
+            client.DownloadFileCompleted += (sender, e) => downloading = false;
+            client.DownloadFileAsync(uri, tmpImageLoc);
+
+            while (downloading) 
+            { 
+                await Task.Delay(50); 
+            }
+
             //Load sample data
             var imageBytes = System.IO.File.ReadAllBytes(tmpImageLoc);
             CatOrDogModel.ModelInput sampleData = new CatOrDogModel.ModelInput()
@@ -62,11 +73,11 @@ namespace SentimentAI.Controllers
 
             if (prediction.PredictedLabel == "Dogs")
             {
-                return new PredictionResponse($"This is a Dog.");
+                return new PredictionResponse($"This is a Dog.", prediction.Score.Max());
             }
             else
             {
-                return new PredictionResponse($"This is a Cat.");
+                return new PredictionResponse($"This is a Cat.", prediction.Score.Max());
             }
         }
     }
