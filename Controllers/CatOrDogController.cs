@@ -43,7 +43,7 @@ namespace SentimentAI.Controllers
                 return new PredictionResponse("The file must be a .png, .jpg or .jpeg");
             }
 
-            string tmpImageLoc = imageDir + $"\\{filename}";
+            string tmpImageLoc = imageDir + $"/{filename}";
             using (WebClient webClient = new WebClient())
             {
                 webClient.DownloadFile(imageURL, tmpImageLoc);
