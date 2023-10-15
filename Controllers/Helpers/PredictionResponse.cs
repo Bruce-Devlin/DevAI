@@ -6,15 +6,20 @@ namespace SentimentAI.Controllers.Helpers
     {
         public override string ToString()
         {
-            var jsonString = JsonConvert.SerializeObject(this);
+            string jsonString = JsonConvert.SerializeObject(this);
             return jsonString;
         }
 
-        public PredictionResponse(string newprediction = "") 
+        public PredictionResponse(string newPrediction, float newProbability = -1) 
         {
-            prediction = newprediction;
+            prediction.response = newPrediction;
+            prediction.probability = newProbability;
         }
 
-        public string prediction {  get; set; }
+        public class prediction 
+        {
+            public static string response { get; set; }
+            public static float probability { get; set; }
+        }
     }
 }

@@ -25,20 +25,16 @@ namespace SentimentAI.Controllers
 
             //Load model and predict output
             var prediction = SentimentModel.Predict(sampleData);
-            PredictionResponse response = new PredictionResponse();
 
 
             if (prediction.PredictedLabel)
             {
-                response.prediction = $"I predict this is a positive comment with {prediction.Probability}% Probability.";
+                return new PredictionResponse($"This is a positive comment.", prediction.Probability).ToString();
             }
             else
             {
-                response.prediction = $"I predict this is a negative comment with {prediction.Probability}% Probability.";
+                return new PredictionResponse($"This is a negative comment.", prediction.Probability).ToString();
             }
-
-
-            return response.ToString();
         }
     }
 }

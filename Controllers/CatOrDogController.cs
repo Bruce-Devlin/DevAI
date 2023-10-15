@@ -58,20 +58,16 @@ namespace SentimentAI.Controllers
 
             //Load model and predict output
             var prediction = CatOrDogModel.Predict(sampleData);
-
-            PredictionResponse response = new PredictionResponse();
+            System.IO.File.Delete(tmpImageLoc);
 
             if (prediction.PredictedLabel == "Dogs")
             {
-                response.prediction = $"I predict this is a Dog.";
+                return new PredictionResponse($"This is a Dog.").ToString();
             }
             else
             {
-                response.prediction = $"I predict this is a Cat.";
+                return new PredictionResponse($"This is a Cat.").ToString();
             }
-            System.IO.File.Delete(tmpImageLoc);
-
-            return response.ToString();
         }
     }
 }
