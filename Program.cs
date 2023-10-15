@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+
 namespace SentimentAI
 {
     public class Program
@@ -11,7 +13,20 @@ namespace SentimentAI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "DevAI API",
+                    Description = "An ASP.NET Core Web API for interfacing with DevAI.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Contact",
+                        Url = new Uri("mailto://bjmdevlin@gmail.com")
+                    }
+                });
+            });
 
             var app = builder.Build();
 
