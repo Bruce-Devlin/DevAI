@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SentimentAI.Controllers.Helpers;
 
 namespace SentimentAI.Controllers
 {
@@ -24,20 +25,20 @@ namespace SentimentAI.Controllers
 
             //Load model and predict output
             var prediction = SentimentModel.Predict(sampleData);
-            string result = "";
+            PredictionResponse response = new PredictionResponse();
 
 
             if (prediction.PredictedLabel)
             {
-                result = $"I predict this is a positive comment with {prediction.Probability}% Probability.";
+                response.prediction = $"I predict this is a positive comment with {prediction.Probability}% Probability.";
             }
             else
             {
-                result = $"I predict this is a negative comment with {prediction.Probability}% Probability.";
+                response.prediction = $"I predict this is a negative comment with {prediction.Probability}% Probability.";
             }
 
 
-            return result;
+            return response.ToString();
         }
     }
 }

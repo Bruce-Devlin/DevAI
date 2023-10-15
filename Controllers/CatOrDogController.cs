@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SentimentAI.Controllers.Helpers;
 using System.Net;
 
 namespace SentimentAI.Controllers
@@ -31,14 +32,14 @@ namespace SentimentAI.Controllers
             }
             catch (Exception ex) 
             {
-                return "Not a valid URL!";
+                return new PredictionResponse("Not a valid URL!").ToString();
             }
 
             
             string filename = Path.GetFileName(uri.LocalPath);
             if (!filename.EndsWith(".png") && !filename.EndsWith(".jpg") && !filename.EndsWith(".jpeg"))
             {
-                return "The file must be a .png, .jpg or .jpeg";
+                return new PredictionResponse("The file must be a .png, .jpg or .jpeg").ToString();
             }
 
             string tmpImageLoc = imageDir + $"\\{filename}";
@@ -57,22 +58,20 @@ namespace SentimentAI.Controllers
 
             //Load model and predict output
             var prediction = CatOrDogModel.Predict(sampleData);
-            string result = "";
 
+            PredictionResponse response = new PredictionResponse();
 
             if (prediction.PredictedLabel == "Dogs")
             {
-                result = $"I predict this is a Dog.";
+                response.prediction = $"I predict this is a Dog.";
             }
             else
             {
-                result = $"I predict this is a Cat.";
+                response.prediction = $"I predict this is a Cat.";
             }
             System.IO.File.Delete(tmpImageLoc);
 
-            return result;
-
-
+            return response.ToString();
         }
     }
 }
