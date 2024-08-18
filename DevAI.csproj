@@ -6,6 +6,8 @@
     <StartupObject>DevAI.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Aspose.Drawing" Version="24.8.0" />
+    <PackageReference Include="Aspose.Drawing.Common" Version="24.8.0" />
     <PackageReference Include="Microsoft.ML" Version="1.7.1" />
     <PackageReference Include="Microsoft.ML.Recommender" Version="0.19.1" />
     <PackageReference Include="Microsoft.ML.Vision" Version="1.7.1" />
