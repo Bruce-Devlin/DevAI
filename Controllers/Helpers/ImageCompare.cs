@@ -1,5 +1,4 @@
-﻿
-using System.Drawing;
+﻿using Aspose.Drawing;
 
 namespace DevAI.Controllers.Helpers
 {
@@ -65,11 +64,11 @@ namespace DevAI.Controllers.Helpers
         {
             /* Important: you have to set the PixelFormat to remove the alpha channel.
              * Otherwise you'll still have a transparent image - just without transparent areas */
-            var result = new Bitmap(bitmap.Size.Width, bitmap.Size.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            var result = new Bitmap(bitmap.Size.Width, bitmap.Size.Height, Aspose.Drawing.Imaging.PixelFormat.Format24bppRgb);
             var g = Graphics.FromImage(result);
 
             g.Clear(Color.White);
-            g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+            g.CompositingMode = Aspose.Drawing.Drawing2D.CompositingMode.SourceOver;
             g.DrawImage(bitmap, 0, 0);
 
             return result;
@@ -79,7 +78,7 @@ namespace DevAI.Controllers.Helpers
         {
             using (var stream = new MemoryStream())
             {
-                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                image.Save(stream, Aspose.Drawing.Imaging.ImageFormat.Jpeg);
                 return stream.ToArray();
             }
         }
