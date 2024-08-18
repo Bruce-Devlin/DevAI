@@ -31,7 +31,7 @@ namespace DevAI
 
             var app = builder.Build();
 
-            string hostURL = "http://[::]:5599/";
+            string hostURL = "http://[::]:5165/";
             app.Urls.Add(hostURL);
 
             // Configure the HTTP request pipeline.
