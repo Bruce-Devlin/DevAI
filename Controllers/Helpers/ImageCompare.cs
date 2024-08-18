@@ -29,7 +29,7 @@ namespace DevAI.Controllers.Helpers
             // To traverse in array1.
             for (i = 0; i < a1.Length; i++)
             {
-                if (a2.Length > i) if (a1[i] == a2[i]) sameCount = sameCount + 1;
+                if (a2.Length > i) if (a1[i] == a2[i]) sameCount++;
             }
 
             double total = interpretedImage1.Count();
