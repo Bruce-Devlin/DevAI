@@ -7,7 +7,7 @@ namespace DevAI.Controllers.Helpers
 {
     public class ImageCompare
     {
-        public static bool Compare(string image1URL, string image2URL, out double likeness)
+        public static bool Compare(string image1URL, string image2URL, out double confidence)
         {
             var tmpImage1URI = Images.Download(image1URL).Result;
             var tmpImage2URI = Images.Download(image2URL).Result;
@@ -18,27 +18,47 @@ namespace DevAI.Controllers.Helpers
             var pixelatedImage1 = Pixelate(image1);
             var pixelatedImage2 = Pixelate(image2);
 
+
             var interpretedImage1 = Interpret(pixelatedImage1);
             var interpretedImage2 = Interpret(pixelatedImage2);
 
             var equal = interpretedImage1.SequenceEqual(interpretedImage2);
 
-            double matchingTotal = interpretedImage1.Where(x => interpretedImage2.Contains(x)).Count();
+            byte[] a1 = interpretedImage1;
+            byte[] a2 = interpretedImage2;
+            int i, j, flag, x, k = 0;
+            int sameCount = 0;
+
+            // To traverse in array1.
+            for (i = 0; i < a1.Length; i++)
+            {
+                if (a2.Length > i) if (a1[i] == a2[i]) sameCount = sameCount + 1;
+            }
+
             double total = interpretedImage1.Count();
 
-            var result = matchingTotal / total;
-            likeness = result * 100;
+            var matching = sameCount / total;
+            var matchingPersent = matching * 100;
+            confidence = 100 - matchingPersent;
+
+
+            image1.Dispose();
+            image2.Dispose();
+            pixelatedImage1.Dispose(); 
+            pixelatedImage2.Dispose();
 
             return equal;
         }
 
         private static Bitmap Pixelate(Bitmap image)
         {
-            Bitmap resizedSmall = new Bitmap(image, new Size(image.Width / 8, image.Height / 8));
+            Bitmap resizedSmall = new Bitmap(image, new Size(image.Width / 4, image.Height / 4));
             Bitmap resizedLarge = new Bitmap(resizedSmall, new Size(resizedSmall.Width * 4, resizedSmall.Height * 4));
-            Bitmap resizedFinal = new Bitmap(resizedLarge, new Size(image.Width / 3, image.Height / 3));
 
-            Bitmap finalImage = ReplaceTransparency(resizedFinal);
+            Bitmap finalImage = ReplaceTransparency(resizedLarge);
+
+            resizedSmall.Dispose();
+            resizedLarge.Dispose();
 
             return finalImage;
         }

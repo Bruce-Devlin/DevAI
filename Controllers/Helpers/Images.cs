@@ -39,7 +39,11 @@ namespace DevAI.Controllers.Helpers
             bool downloading = true;
             var client = new WebClient();
 
-            client.DownloadFileCompleted += (sender, e) => downloading = false;
+            client.DownloadFileCompleted += (sender, e) => 
+            { 
+                downloading = false;
+                client.Dispose();
+            };
             client.DownloadFileAsync(uri, tmpImageLoc);
 
             while (downloading)
