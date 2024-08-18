@@ -29,11 +29,11 @@ namespace DevAI.Controllers
 
             if (prediction.PredictedLabel)
             {
-                return new PredictionResponse($"This is a positive comment.", prediction.Probability);
+                return new PredictionResponse($"This is a positive comment.", prediction.Probability * 100);
             }
             else
             {
-                return new PredictionResponse($"This is a negative comment.", prediction.Probability);
+                return new PredictionResponse($"This is a negative comment.", prediction.Probability * 100);
             }
         }
     }

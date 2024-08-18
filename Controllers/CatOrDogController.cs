@@ -73,11 +73,11 @@ namespace DevAI.Controllers
 
             if (prediction.PredictedLabel == "Dogs")
             {
-                return new PredictionResponse($"This is a Dog.", prediction.Score.Max());
+                return new PredictionResponse($"This is a Dog.", prediction.Score.Max() * 100);
             }
             else
             {
-                return new PredictionResponse($"This is a Cat.", prediction.Score.Max());
+                return new PredictionResponse($"This is a Cat.", prediction.Score.Max() * 100);
             }
         }
     }
