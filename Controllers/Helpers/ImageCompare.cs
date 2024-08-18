@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿
 using System.Drawing;
-using System.Net;
-using static Tensorflow.TensorShapeProto.Types;
 
 namespace DevAI.Controllers.Helpers
 {
