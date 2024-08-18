@@ -10,7 +10,7 @@ namespace DevAI.Controllers.Helpers
             return jsonString;
         }
 
-        public PredictionResponse(string newPrediction, float newProbability = -1) 
+        public PredictionResponse(string newPrediction, float newProbability = -1)
         {
             prediction = new Prediction();
             prediction.response = newPrediction;

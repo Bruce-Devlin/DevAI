@@ -39,8 +39,8 @@ namespace DevAI.Controllers.Helpers
             bool downloading = true;
             var client = new WebClient();
 
-            client.DownloadFileCompleted += (sender, e) => 
-            { 
+            client.DownloadFileCompleted += (sender, e) =>
+            {
                 downloading = false;
                 client.Dispose();
             };

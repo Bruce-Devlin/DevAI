@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using DevAI.Controllers.Helpers;
+﻿using DevAI.Controllers.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DevAI.Controllers
 {

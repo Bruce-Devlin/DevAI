@@ -8,7 +8,7 @@ namespace DevAI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            
+
 
             builder.Services.AddControllers();
 
@@ -48,7 +48,7 @@ namespace DevAI
             app.UseAuthorization();
             app.MapControllers();
 
-            
+
 
             app.Run();
         }

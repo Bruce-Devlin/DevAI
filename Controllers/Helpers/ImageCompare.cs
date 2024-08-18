@@ -41,7 +41,7 @@ namespace DevAI.Controllers.Helpers
 
             image1.Dispose();
             image2.Dispose();
-            pixelatedImage1.Dispose(); 
+            pixelatedImage1.Dispose();
             pixelatedImage2.Dispose();
 
             return equal;

@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using DevAI.Controllers.Helpers;
+﻿using DevAI.Controllers.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace DevAI.Controllers
@@ -31,12 +30,12 @@ namespace DevAI.Controllers
             {
                 uri = new Uri(imageURL);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return new PredictionResponse("Not a valid URL!");
             }
 
-            
+
             string filename = Path.GetFileName(uri.LocalPath);
             if (!filename.EndsWith(".png") && !filename.EndsWith(".jpg") && !filename.EndsWith(".jpeg"))
             {
@@ -55,9 +54,9 @@ namespace DevAI.Controllers
             client.DownloadFileCompleted += (sender, e) => downloading = false;
             client.DownloadFileAsync(uri, tmpImageLoc);
 
-            while (downloading) 
-            { 
-                await Task.Delay(50); 
+            while (downloading)
+            {
+                await Task.Delay(50);
             }
 
             //Load sample data
@@ -66,7 +65,7 @@ namespace DevAI.Controllers
             {
                 ImageSource = imageBytes,
             };
-            
+
             //Load model and predict output
             var prediction = CatOrDogModel.Predict(sampleData);
             Directory.Delete(imageDir, true);
