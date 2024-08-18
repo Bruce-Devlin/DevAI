@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SentimentAI.Controllers.Helpers;
+using DevAI.Controllers.Helpers;
 
-namespace SentimentAI.Controllers
+namespace DevAI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

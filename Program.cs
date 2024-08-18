@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
 
-namespace SentimentAI
+namespace DevAI
 {
     public class Program
     {
@@ -8,10 +8,11 @@ namespace SentimentAI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
@@ -19,7 +20,7 @@ namespace SentimentAI
                 {
                     Version = "v1",
                     Title = "DevAI API",
-                    Description = "An ASP.NET Core Web API for interfacing with DevAI.",
+                    Description = "An ASP.NET Core Web API for interfacing with DevAI.\r\n\r\nThis AI is based on .NET Machine Learning and is currently trained to identify the difference between Cats and Dogs along with spotting the sentiment of a comment or message (positive/negative).",
                     Contact = new OpenApiContact
                     {
                         Name = "GitHub",
@@ -29,6 +30,9 @@ namespace SentimentAI
             });
 
             var app = builder.Build();
+
+            string hostURL = "http://[::]:5599/";
+            app.Urls.Add(hostURL);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -43,6 +47,8 @@ namespace SentimentAI
 
             app.UseAuthorization();
             app.MapControllers();
+
+            
 
             app.Run();
         }

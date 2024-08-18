@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SentimentAI.Controllers.Helpers
+namespace DevAI.Controllers.Helpers
 {
     public class PredictionResponse
     {

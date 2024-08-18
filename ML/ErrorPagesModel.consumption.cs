@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-namespace SentimentAI
+namespace DevAI
 {
     public partial class ErrorPagesModel
     {
@@ -46,8 +46,7 @@ namespace SentimentAI
         }
 
         #endregion
-
-        private static string MLNetModelPath = Path.GetFullPath("ErrorPagesModel.zip");
+        private static string MLNetModelPath = Environment.CurrentDirectory + ("/ML/ErrorPagesModel.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 
